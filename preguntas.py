@@ -83,6 +83,25 @@ def pregunta_03():
     ]
 
     """
+    datos = open("data.csv", "r").readlines()
+    datos = [num.replace("\n", "") for num in datos]
+    datos = [num.replace("\t", ",") for num in datos]
+    datos = [z.split(",") for z in datos]
+
+    letras_cantidad = {}
+    lista_letras=[]
+    for x in datos:
+        if x[0] not in  letras_cantidad:
+            letras_cantidad[x[0]] = int(x[1])
+        else:
+            letras_cantidad[x[0]] = letras_cantidad[x[0]] + int(x[1])
+
+    lista_letras = list(letras_cantidad.items())
+    lista_letras.sort()
+    lista_letras
+
+    return  lista_letras
+
     return
 
 
