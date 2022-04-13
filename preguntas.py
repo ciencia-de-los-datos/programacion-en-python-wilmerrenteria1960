@@ -21,7 +21,14 @@ def pregunta_01():
     214
 
     """
-    return
+    datos = open("data.csv", "r").readlines()
+    datos = [num.replace("\n", "") for num in datos]
+    datos = [num.replace("\t", ",") for num in datos]
+    datos = [z.split(",") for z in datos]
+    suma = [int(x[1]) for x in datos]
+    suma = sum(suma)
+    
+    return suma
 
 
 def pregunta_02():
