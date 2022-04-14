@@ -178,7 +178,7 @@ def pregunta_05():
         if llave in resultados.keys():
          resultados[llave].append(valor)
         else:
-        resultados[llave]= [valor]
+            resultados[llave]= [valor]
 
     resultados =[(llave, max(valor), min(valor)) for llave, valor in resultados.items()]
     resultados.sort()
