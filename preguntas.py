@@ -126,6 +126,7 @@ def pregunta_04():
     ]
 
     """
+    datos = open("data.csv", "r").readlines()
     datos = [num.replace("\n", "") for num in datos]
     datos = [num.replace("\t", ",") for num in datos]
     datos = [z.split(",") for z in datos]
