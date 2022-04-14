@@ -102,7 +102,6 @@ def pregunta_03():
 
     return  lista_letras
 
-    return
 
 
 def pregunta_04():
@@ -127,7 +126,27 @@ def pregunta_04():
     ]
 
     """
-    return
+    datos = [num.replace("\n", "") for num in datos]
+    datos = [num.replace("\t", ",") for num in datos]
+    datos = [z.split(",") for z in datos]
+
+    lista_aux =[x[2].replace("-",",") for x in datos]
+    lista_aux = [x.split(",") for x in lista_aux]
+
+    diccionario_mes = {}
+    lista_resul =[]
+
+    for x in lista_aux:
+        if x[1] not in diccionario_mes:
+            diccionario_mes[x[1]]=1
+        else:
+            diccionario_mes[x[1]]= diccionario_mes[x[1]]+1
+
+    lista_resul= list(diccionario_mes.items())
+    lista_resul.sort()
+    
+
+    return lista_resul
 
 
 def pregunta_05():
