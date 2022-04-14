@@ -165,7 +165,25 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+    datos = file.readlines()
+
+    datos = [row.replace("\t", "") for row in datos]
+    datos = [row[:2] for row in datos]
+
+    resultados ={}
+
+    for llave, valor in datos:
+        valor = int(valor)
+        if llave in resultados.keys():
+         resultados[llave].append(valor)
+        else:
+        resultados[llave]= [valor]
+
+    resultados =[(llave, max(valor), min(valor)) for llave, valor in resultados.items()]
+    resultados.sort()
+    
+    return resultados
 
 
 def pregunta_06():
