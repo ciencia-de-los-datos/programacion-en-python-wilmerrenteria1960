@@ -254,8 +254,8 @@ def pregunta_07():
     ]
 
     """
-    with open ("data.csv", "r") as file:
-        datos= file.readlines()
+    with open("data.csv", "r") as file:
+            datos = file.readlines()
 
     datos = [row.replace("\t", "") for row in datos]
     datos = [row[:2] for row in datos]
