@@ -254,7 +254,22 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open ("data.csv", "r") as file:
+        datos= file.readlines()
+
+    datos = [row.replace("\t", "") for row in datos]
+    datos = [row[:2] for row in datos]
+
+    resultados ={}
+
+    for llave, valor in datos:
+        if valor in resultados.keys():
+            resultados[valor].append(llave)
+        else:
+            resultados[valor]= [llave]
+    resultados = list(resultados.items())
+    resultados.sort()
+    return resultados
 
 
 def pregunta_08():
