@@ -425,7 +425,27 @@ def pregunta_11():
 
 
     """
-    return
+    with open("/content/data.csv", 'r') as file:
+        datos = file.readlines()
+
+    datos = [row.split("\t") for row in datos] 
+    lista_aux= [[row[3]] + [row[1]] for row in datos]
+    lista_final =[]
+    diccionario_aux ={}
+    diccionario_final ={}
+    for row in lista_aux:
+        [lista_final.append([values, int(row[1])]) for values in row[0].split(",")]
+
+    for llave, valor in lista_final:
+        if llave in diccionario_aux.keys():
+            diccionario_aux[llave].append(valor)
+        else:
+            diccionario_aux[llave] =[valor]
+
+    diccionario_final = [(llave, sum(valor)) for llave, valor in diccionario_aux.items()]
+    diccionario_final = dict(diccionario_final)     
+        
+    return diccionario_final
 
 
 def pregunta_12():
