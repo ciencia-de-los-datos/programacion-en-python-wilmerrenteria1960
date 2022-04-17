@@ -316,12 +316,12 @@ def pregunta_09():
     datos = [row.split(",") for row in datos]
 
     for filas in datos:
-    for columnas in filas:
-        valoraux = int(columnas[4:])
-        if columnas[:3] in resultados.keys():
-            resultados[columnas[:3]].append(valoraux)
-        else:
-            resultados[columnas[:3]]=[valoraux]
+        for columnas in filas:
+            valoraux = int(columnas[4:])
+            if columnas[:3] in resultados.keys():
+                resultados[columnas[:3]].append(valoraux)
+            else:
+                resultados[columnas[:3]]=[valoraux]
 
     resultados =[(llave,len(valor)) for llave, valor in resultados.items()]
     resultados.sort()
