@@ -21,7 +21,14 @@ def pregunta_01():
     214
 
     """
-    return
+    datos = open("data.csv", "r").readlines()
+    datos = [num.replace("\n", "") for num in datos]
+    datos = [num.replace("\t", ",") for num in datos]
+    datos = [z.split(",") for z in datos]
+    suma = [int(x[1]) for x in datos]
+    suma = sum(suma)
+    
+    return suma
 
 
 def pregunta_02():
@@ -39,7 +46,26 @@ def pregunta_02():
     ]
 
     """
-    return
+    datos = open("data.csv", "r").readlines()
+    datos = [num.replace("\n", "") for num in datos]
+    datos = [num.replace("\t", ",") for num in datos]
+    datos = [z.split(",") for z in datos]
+
+    letras_cantidad = {}
+    lista_letras=[]
+
+
+    for x in datos:
+        if x[0] not in  letras_cantidad:
+         letras_cantidad[x[0]] = 1
+        else:
+            letras_cantidad[x[0]] = letras_cantidad[x[0]] + 1
+
+    lista_letras = list(letras_cantidad.items())
+    lista_letras.sort()
+    lista_letras
+
+    return  lista_letras
 
 
 def pregunta_03():
@@ -57,7 +83,25 @@ def pregunta_03():
     ]
 
     """
-    return
+    datos = open("data.csv", "r").readlines()
+    datos = [num.replace("\n", "") for num in datos]
+    datos = [num.replace("\t", ",") for num in datos]
+    datos = [z.split(",") for z in datos]
+
+    letras_cantidad = {}
+    lista_letras=[]
+    for x in datos:
+        if x[0] not in  letras_cantidad:
+            letras_cantidad[x[0]] = int(x[1])
+        else:
+            letras_cantidad[x[0]] = letras_cantidad[x[0]] + int(x[1])
+
+    lista_letras = list(letras_cantidad.items())
+    lista_letras.sort()
+    lista_letras
+
+    return  lista_letras
+
 
 
 def pregunta_04():
@@ -82,7 +126,28 @@ def pregunta_04():
     ]
 
     """
-    return
+    datos = open("data.csv", "r").readlines()
+    datos = [num.replace("\n", "") for num in datos]
+    datos = [num.replace("\t", ",") for num in datos]
+    datos = [z.split(",") for z in datos]
+
+    lista_aux =[x[2].replace("-",",") for x in datos]
+    lista_aux = [x.split(",") for x in lista_aux]
+
+    diccionario_mes = {}
+    lista_resul =[]
+
+    for x in lista_aux:
+        if x[1] not in diccionario_mes:
+            diccionario_mes[x[1]]=1
+        else:
+            diccionario_mes[x[1]]= diccionario_mes[x[1]]+1
+
+    lista_resul= list(diccionario_mes.items())
+    lista_resul.sort()
+    
+
+    return lista_resul
 
 
 def pregunta_05():
@@ -100,7 +165,25 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [row.replace("\t", "") for row in datos]
+    datos = [row[:2] for row in datos]
+
+    resultados ={}
+
+    for llave, valor in datos:
+        valor = int(valor)
+        if llave in resultados.keys():
+         resultados[llave].append(valor)
+        else:
+            resultados[llave]= [valor]
+
+    resultados =[(llave, max(valor), min(valor)) for llave, valor in resultados.items()]
+    resultados.sort()
+    
+    return resultados
 
 
 def pregunta_06():
@@ -125,7 +208,29 @@ def pregunta_06():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+            datos = file.readlines()
+
+    datos = [row.replace("\t", "?") for row in datos]
+    datos = [row.split("?") for row in datos]
+    datos = [row[4] for row in datos]
+    datos = [row.replace("\n", "") for row in datos]
+
+    resultados ={}
+
+    datos = [row.split(",") for row in datos]
+
+    for filas in datos:
+        for columnas in filas:
+            valoraux = int(columnas[4:])
+            if columnas[:3] in resultados.keys():
+                resultados[columnas[:3]].append(valoraux)
+            else:
+                resultados[columnas[:3]]=[valoraux]
+        
+    resultados =[(llave,min(valor),  max(valor)) for llave, valor in resultados.items()]
+    resultados.sort()
+    return resultados
 
 
 def pregunta_07():
@@ -149,7 +254,23 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+            datos = file.readlines()
+
+    datos = [row.replace("\t", "") for row in datos]
+    datos = [row[:2] for row in datos]
+
+    resultados ={}
+
+    for llave, valor in datos:
+        valor = int(valor)
+        if valor in resultados.keys():
+            resultados[valor].append(llave)
+        else:
+            resultados[valor]= [llave]
+    resultados = list(resultados.items())
+    resultados.sort()
+    return resultados
 
 
 def pregunta_08():
@@ -174,7 +295,25 @@ def pregunta_08():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+            datos = file.readlines()
+
+    datos = [row.replace("\t", "") for row in datos]
+    datos = [row[:2] for row in datos]
+
+    resultados ={}
+
+    for llave, valor in datos:
+        valor = int(valor)
+        if valor in resultados.keys():
+            resultados[valor].append(llave)
+        else:
+            resultados[valor]= [llave]
+
+    resultados =[(llave , sorted(set(valor))) for llave, valor in resultados.items()]
+    resultados.sort()
+    
+    return resultados
 
 
 def pregunta_09():
@@ -197,7 +336,33 @@ def pregunta_09():
     }
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [row.replace("\t", "?") for row in datos]
+    datos = [row.split("?") for row in datos]
+    datos = [row[4] for row in datos]
+    datos = [row.replace("\n", "") for row in datos]
+
+    resultados ={}
+    resultado_dic ={}
+
+    datos = [row.split(",") for row in datos]
+
+    for filas in datos:
+        for columnas in filas:
+            valoraux = int(columnas[4:])
+            if columnas[:3] in resultados.keys():
+                resultados[columnas[:3]].append(valoraux)
+            else:
+                resultados[columnas[:3]]=[valoraux]
+
+    resultados =[(llave,len(valor)) for llave, valor in resultados.items()]
+    resultados.sort()
+    resultado_dic = dict (resultados)
+
+    
+    return resultado_dic
 
 
 def pregunta_10():
@@ -218,7 +383,28 @@ def pregunta_10():
 
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [row.replace("\t", "?") for row in datos]
+    datos = [row.split("?") for row in datos]
+
+    lista_letras =[]
+    lista_columna3= []
+    lista_columna4= []
+    lista_final =[]
+
+
+
+    for row in datos:
+        lista_letras.append(row[0])
+        columna3= len(row[3].split(","))
+        lista_columna3.append(columna3)
+        columna4= len(row[4].split(","))
+        lista_columna4.append(columna4)
+        lista_final = list(zip(lista_letras,lista_columna3,lista_columna4))
+
+    return lista_final
 
 
 def pregunta_11():
@@ -239,7 +425,27 @@ def pregunta_11():
 
 
     """
-    return
+    with open("data.csv", 'r') as file:
+        datos = file.readlines()
+
+    datos = [row.split("\t") for row in datos] 
+    lista_aux= [[row[3]] + [row[1]] for row in datos]
+    lista_final =[]
+    diccionario_aux ={}
+    diccionario_final ={}
+    for row in lista_aux:
+        [lista_final.append([values, int(row[1])]) for values in row[0].split(",")]
+
+    for llave, valor in lista_final:
+        if llave in diccionario_aux.keys():
+            diccionario_aux[llave].append(valor)
+        else:
+            diccionario_aux[llave] =[valor]
+
+    diccionario_final = [(llave, sum(valor)) for llave, valor in diccionario_aux.items()]
+    diccionario_final = dict(diccionario_final)     
+        
+    return diccionario_final
 
 
 def pregunta_12():
@@ -257,4 +463,25 @@ def pregunta_12():
     }
 
     """
-    return
+    with open("data.csv", 'r') as file:
+        datos = file.readlines()
+    datos = [x.replace("\n","") for x in datos]
+    datos = [row.split("\t") for row in datos] 
+    lista_aux= [[row[0]] + [row[4]] for row in datos]
+    valores_unicos =[]
+    diccionario_aux ={}
+
+    for row in lista_aux:
+        [valores_unicos.append([row[0],int(x.split(":")[1])]) for x in row[1].split(",")]
+
+    for llave, valor in valores_unicos:
+        if llave in diccionario_aux.keys():
+            diccionario_aux[llave].append(valor)
+        else:
+            diccionario_aux[llave] =[valor]
+
+    diccionario_final = [(llave, sum(valor)) for llave, valor in diccionario_aux.items()]
+    diccionario_final = dict(diccionario_final)     
+        
+
+    return diccionario_final
