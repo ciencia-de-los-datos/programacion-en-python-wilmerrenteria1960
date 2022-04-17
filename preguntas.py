@@ -302,7 +302,33 @@ def pregunta_09():
     }
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [row.replace("\t", "?") for row in datos]
+    datos = [row.split("?") for row in datos]
+    datos = [row[4] for row in datos]
+    datos = [row.replace("\n", "") for row in datos]
+
+    resultados ={}
+    resultado_dic ={}
+
+    datos = [row.split(",") for row in datos]
+
+    for filas in datos:
+    for columnas in filas:
+        valoraux = int(columnas[4:])
+        if columnas[:3] in resultados.keys():
+            resultados[columnas[:3]].append(valoraux)
+        else:
+            resultados[columnas[:3]]=[valoraux]
+
+    resultados =[(llave,len(valor)) for llave, valor in resultados.items()]
+    resultados.sort()
+    resultado_dic = dict (resultados)
+
+    
+    return resultado_dic
 
 
 def pregunta_10():
