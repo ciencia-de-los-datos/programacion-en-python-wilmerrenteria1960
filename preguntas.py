@@ -349,7 +349,28 @@ def pregunta_10():
 
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [row.replace("\t", "?") for row in datos]
+    datos = [row.split("?") for row in datos]
+
+    lista_letras =[]
+    lista_columna3= []
+    lista_columna4= []
+    lista_final =[]
+
+
+
+    for row in datos:
+        lista_letras.append(row[0])
+        columna3= len(row[3].split(","))
+        lista_columna3.append(columna3)
+        columna4= len(row[4].split(","))
+        lista_columna4.append(columna4)
+        lista_final = list(zip(lista_letras,lista_columna3,lista_columna4))
+
+    return lista_final
 
 
 def pregunta_11():
