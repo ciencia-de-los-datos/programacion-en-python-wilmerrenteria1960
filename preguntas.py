@@ -310,10 +310,9 @@ def pregunta_08():
         else:
             resultados[valor]= [llave]
 
-    resultados =[(llave,set(valor)) for llave, valor in resultados.items()]
+    resultados =[(llave , list(set(valor))) for llave, valor in resultados.items()]
     resultados.sort()
     
-
     return resultados
 
 
