@@ -463,4 +463,25 @@ def pregunta_12():
     }
 
     """
-    return
+    with open("data.csv", 'r') as file:
+        datos = file.readlines()
+    datos = [x.replace("\n","") for x in datos]
+    datos = [row.split("\t") for row in datos] 
+    lista_aux= [[row[0]] + [row[4]] for row in datos]
+    valores_unicos =[]
+    diccionario_aux ={}
+
+    for row in lista_aux:
+        [valores_unicos.append([row[0],int(x.split(":")[1])]) for x in row[1].split(",")]
+
+    for llave, valor in valores_unicos:
+        if llave in diccionario_aux.keys():
+            diccionario_aux[llave].append(valor)
+        else:
+            diccionario_aux[llave] =[valor]
+
+    diccionario_final = [(llave, sum(valor)) for llave, valor in diccionario_aux.items()]
+    diccionario_final = dict(diccionario_final)     
+        
+
+    return diccionario_final
