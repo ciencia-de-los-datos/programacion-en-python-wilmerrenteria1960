@@ -425,7 +425,7 @@ def pregunta_11():
 
 
     """
-    with open("/content/data.csv", 'r') as file:
+    with open("data.csv", 'r') as file:
         datos = file.readlines()
 
     datos = [row.split("\t") for row in datos] 
