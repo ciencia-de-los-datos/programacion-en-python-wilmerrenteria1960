@@ -263,6 +263,7 @@ def pregunta_07():
     resultados ={}
 
     for llave, valor in datos:
+        valor = int(valor)
         if valor in resultados.keys():
             resultados[valor].append(llave)
         else:
